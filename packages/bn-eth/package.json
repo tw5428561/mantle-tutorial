@@ -1,0 +1,18 @@
+{
+  "name": "eth-dev",
+  "version": "1.0.0",
+  "main": "test.js",
+  "license": "MIT",
+  "dependencies": {
+    "@bitdaoio/sdk": "1.0.4",
+    "dotenv": "^16.0.0",
+    "ethers": "^5.4.0",
+    "hardhat": "^2.4.1"
+  },
+  "scripts": {
+    "script": "node index.js",
+    "query": "node query.js",
+    "deposit": "node deposit.js",
+    "withdraw": "node withdraw.js"
+  }
+}
