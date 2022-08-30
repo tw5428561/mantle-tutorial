@@ -23,7 +23,7 @@ task("l1mintToken721", "Mint Token")
  */
 task("approveToken721", "approveToken721")
     .addParam("exampletoken", "ExampleToken address")
-    .addParam("l1erc721gateway", "OVM_L1ERC721Gateway address")
+    .addParam("l1erc721gateway", "BVM_L1ERC721Gateway address")
     .addParam("to", "接受者钱包地址")
     .addParam("tokenid", "approve tokenId")
     .setAction(async (taskArgs, hre) => {
@@ -47,10 +47,10 @@ task("approveToken721", "approveToken721")
  * hh depositToken721 --l1erc721gateway 0xdd322e007E420d9e7699194c90Df89B4b3CFFfC1 --tokenid 2 --network opl1
  */
 task("depositToken721", "Mint Token")
-    .addParam("l1erc721gateway", "OVM_L1ERC721Gateway address")
+    .addParam("l1erc721gateway", "BVM_L1ERC721Gateway address")
     .addParam("tokenid", "tokenid")
     .setAction(async (taskArgs, hre) => {
-        const L1ERC721GatewayFactory = await hre.ethers.getContractFactory('OVM_L1ERC721Gateway')
+        const L1ERC721GatewayFactory = await hre.ethers.getContractFactory('BVM_L1ERC721Gateway')
         const Gateway = await L1ERC721GatewayFactory.attach(taskArgs.l1erc721gateway)
         console.log("Gateway->", Gateway)
         const deposit=await Gateway.deposit(taskArgs.tokenid)
@@ -63,11 +63,11 @@ task("depositToken721", "Mint Token")
  * hh l2721balances --token 0x4826533B4897376654Bb4d4AD88B7faFD0C98528 --to 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --tokenid 1 --network opl2
  */
 task("l2721balances", "确认l2账号信息")
-    .addParam("token", "OVM_L2DepositedERC721 address")
+    .addParam("token", "BVM_L2DepositedERC721 address")
     .addParam("to", "接受者钱包地址")
     .addParam("tokenid", "tokenId")
     .setAction(async (taskArgs, hre) => {
-        const tokenFactory = await hre.ethers.getContractFactory('OVM_L2DepositedERC721')
+        const tokenFactory = await hre.ethers.getContractFactory('BVM_L2DepositedERC721')
         const token = await tokenFactory.attach(taskArgs.token)
         const balanceOf=await token.balanceOf(taskArgs.to)
         console.log("balanceOf->",balanceOf)
@@ -80,7 +80,7 @@ task("l2721balances", "确认l2账号信息")
  * hh l1721balances --token 0x78a4C375E293d5676614E7E8f328F6E5573413C9 --to 0xD6f15EAC1Cb3B4131Ab4899a52E711e19DEeA73f --tokenid 2 --network opl1
  */
 task("l1721balances", "确认l1账号信息")
-    .addParam("token", "OVM_L2DepositedERC721 address")
+    .addParam("token", "BVM_L2DepositedERC721 address")
     .addParam("to", "接受者钱包地址")
     .addParam("tokenid", "tokenId")
     .setAction(async (taskArgs, hre) => {
@@ -97,11 +97,11 @@ task("l1721balances", "确认l1账号信息")
  */
 task("opTransfer721", "转账")
     .addParam("from", "from address")
-    .addParam("token", "OVM_L2DepositedERC721 token address")
+    .addParam("token", "BVM_L2DepositedERC721 token address")
     .addParam("to", "to address ")
     .addParam("tokenid", "approve tokenId")
     .setAction(async (taskArgs, hre) => {
-            const tokenFactory = await hre.ethers.getContractFactory('OVM_L2DepositedERC721')
+            const tokenFactory = await hre.ethers.getContractFactory('BVM_L2DepositedERC721')
             const token = await tokenFactory.attach(taskArgs.token)
             const  balanceOf= await token.balanceOf(taskArgs.to)
             console.log("balanceOf->",await balanceOf)
@@ -117,11 +117,11 @@ task("opTransfer721", "转账")
  * hh withdraw721l1 --address 0x75866fdC1fe08cC5C6742b2f447A3a87007e5C7D --to 0x68949B0eF5dE6087c64947bcA6c749e89B6a8bD9 --tokenid 2 --network opl2
  */
 task("withdraw721l1", "withdraw到l1")
-    .addParam("address", "OVM_L2DepositedERC721 address")
+    .addParam("address", "BVM_L2DepositedERC721 address")
     .addParam("to", "to address ")
     .addParam("tokenid", "tokenId")
     .setAction(async (taskArgs, hre) => {
-            const tokenFactory = await hre.ethers.getContractFactory('OVM_L2DepositedERC721')
+            const tokenFactory = await hre.ethers.getContractFactory('BVM_L2DepositedERC721')
             const token = await tokenFactory.attach(taskArgs.address)
             const withdrawres =await token.withdraw(taskArgs.tokenid)
             console.log("withdrawHash->",withdrawres.hash)

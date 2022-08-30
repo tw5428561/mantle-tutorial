@@ -1,12 +1,12 @@
 const ethers = require('ethers')
 
-const factory = (name, type = '', ovm = false) => {
+const factory = (name, type = '', bvm = false) => {
   const artifact = require(`../artifacts/contracts/op-erc721${type == '' ? '' : '/' + type}/${name}.sol/${name}.json`)
   return new ethers.ContractFactory(artifact.abi, artifact.bytecode)
 }
 const factory__L1_ERC721 = factory('ExampleToken')
-const factory__L2_ERC721 = factory('OVM_L2DepositedERC721', 'OVM', true)
-const factory__L1_ERC721Gateway = factory('OVM_L1ERC721Gateway', 'OVM')
+const factory__L2_ERC721 = factory('BVM_L2DepositedERC721', 'BVM', true)
+const factory__L1_ERC721Gateway = factory('BVM_L1ERC721Gateway', 'BVM')
 
 async function main() {
   const l1RpcProvider = new ethers.providers.JsonRpcProvider('http://127.0.0.1:9545')
@@ -35,7 +35,7 @@ async function main() {
     }
   )
   await L2_ERC721.deployTransaction.wait()
-  console.log("L2 ERC721 Contract OVM_L2DepositedERC721 Address: ", L2_ERC721.address)
+  console.log("L2 ERC721 Contract BVM_L2DepositedERC721 Address: ", L2_ERC721.address)
 
   console.log('Deploying L1 ERC721 Gateway...')
   const L1_ERC721Gateway = await factory__L1_ERC721Gateway.connect(l1Wallet).deploy(

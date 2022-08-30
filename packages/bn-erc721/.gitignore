@@ -1,16 +1,9 @@
-.idea
-.DS_Store
 node_modules
-.env
-coverage
-coverage.json
 
 #Hardhat files
 cache
 artifacts
-typechain
-#typechain-types
-
-
-#package
-package-lock.json
+.env
+yarn.lock
+typechain-types
+cache

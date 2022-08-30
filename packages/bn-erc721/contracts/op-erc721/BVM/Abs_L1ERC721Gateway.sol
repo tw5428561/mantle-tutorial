@@ -3,8 +3,8 @@ pragma solidity >0.5.0 <0.8.0;
 pragma experimental ABIEncoderV2;
 
 /* Interface Imports */
-import { iOVM_L1ERC721Gateway } from "../iOVM/iOVM_L1ERC721Gateway.sol";
-import { iOVM_L2DepositedERC721 } from "../iOVM/iOVM_L2DepositedERC721.sol";
+import { iBVM_L1ERC721Gateway } from "../iBVM/iBVM_L1ERC721Gateway.sol";
+import { iBVM_L2DepositedERC721 } from "../iBVM/iBVM_L2DepositedERC721.sol";
 import { IERC721Metadata } from "../libraries/IERC721Metadata.sol";
 import { IERC721Receiver } from "../libraries/IERC721Receiver.sol";
 
@@ -22,12 +22,12 @@ import "hardhat/console.sol";
  *
  * NOTE: This abstract contract gives all the core functionality of an ERC721 token gateway,
  * but provides easy hooks in case developers need extensions in child contracts.
- * In many cases, the default OVM_ERC721Gateway will suffice.
+ * In many cases, the default BVM_ERC721Gateway will suffice.
  *
  * Compiler used: solc, optimistic-solc
- * Runtime target: EVM or OVM
+ * Runtime target: EVM or BVM
  */
-abstract contract Abs_L1ERC721Gateway is iOVM_L1ERC721Gateway, CrossDomainEnabled, IERC721Receiver {
+abstract contract Abs_L1ERC721Gateway is iBVM_L1ERC721Gateway, CrossDomainEnabled, IERC721Receiver {
 
     /********************************
      * External Contract References *
@@ -42,7 +42,7 @@ abstract contract Abs_L1ERC721Gateway is iOVM_L1ERC721Gateway, CrossDomainEnable
 
     /**
      * @param _originalToken ERC721 address this gateway is deposits funds for
-     * @param _depositedToken iOVM_DepositedERC721-compatible address on the chain being deposited into.
+     * @param _depositedToken iBVM_DepositedERC721-compatible address on the chain being deposited into.
      * @param _messenger messenger address being used for cross-chain communications.
      */
     constructor(
@@ -188,7 +188,7 @@ abstract contract Abs_L1ERC721Gateway is iOVM_L1ERC721Gateway, CrossDomainEnable
         console.log("_sendDepositMessage......");
         // Construct calldata for depositedERC721.finalizeDeposit(_to, _tokenId, _tokenURI)
         bytes memory data = abi.encodeWithSelector(
-            iOVM_L2DepositedERC721.finalizeDeposit.selector,
+            iBVM_L2DepositedERC721.finalizeDeposit.selector,
             _to,
             _tokenId,
             IERC721Metadata(originalToken).tokenURI(_tokenId)

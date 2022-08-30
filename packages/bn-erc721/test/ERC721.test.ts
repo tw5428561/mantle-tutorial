@@ -13,12 +13,12 @@ describe("ERC721 contract", () =>{
       }
 
     describe("Deployment", () => {
-    
+
         it("Should set the right name", async () => {
             const { erc721 } = await loadFixture(deployTokenFixture);
             expect(await erc721.name()).to.equal("TestNFT");
         });
-        
+
         it("Should set the right owner", async () => {
             const { erc721, owner } = await loadFixture(deployTokenFixture);
             expect(await erc721.owner()).to.equal(owner.address);
@@ -42,46 +42,16 @@ describe("ERC721 contract", () =>{
 
             await erc721.safeMint(owner.address, 1);
             expect(await erc721.ownerOf(1)).to.equal(owner.address);
-      
+
             await erc721.safeMint(owner.address, 2);
             expect(await erc721.ownerOf(2)).to.equal(owner.address);
-      
+
             expect(await erc721.balanceOf(owner.address)).to.equal(2);
-            
+
             const svg = await erc721.tokenURI(2)
             console.log("svg: ", svg)
           });
-      
+
     })
 })
 
-// event:
-// Approval
-// ApprovalForAll
-// OwnershipTransferred
-// Transfer
-
-// function:
-// approve
-// burn
-// renounceOwnership
-// safeMint
-// safeTransferFrom
-// safeTransferFrom
-// setApprovalForAll
-// transferFrom
-// transferOwnership
-
-
-// balanceOf
-// getApproved
-// isApprovedForAll
-// name  --
-// owner --
-// ownerOf
-// supportsInterface
-// symbol --
-// tokenByIndex
-// tokenOfOwnerByIndex
-// tokenURI
-// totalSupply --

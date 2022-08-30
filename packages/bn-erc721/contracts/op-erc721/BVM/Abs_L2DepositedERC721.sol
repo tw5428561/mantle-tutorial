@@ -3,8 +3,8 @@ pragma solidity >0.5.0 <0.8.0;
 pragma experimental ABIEncoderV2;
 
 /* Interface Imports */
-import { iOVM_L2DepositedERC721 } from "../iOVM/iOVM_L2DepositedERC721.sol";
-import { iOVM_L1ERC721Gateway } from "../iOVM/iOVM_L1ERC721Gateway.sol";
+import { iBVM_L2DepositedERC721 } from "../iBVM/iBVM_L2DepositedERC721.sol";
+import { iBVM_L1ERC721Gateway } from "../iBVM/iBVM_L1ERC721Gateway.sol";
 
 /* Library Imports */
 import { CrossDomainEnabled } from "@bitdaoio/contracts/libraries/bridge/CrossDomainEnabled.sol";
@@ -19,21 +19,21 @@ import { CrossDomainEnabled } from "@bitdaoio/contracts/libraries/bridge/CrossDo
  * token's internal accounting itself.  This gives developers an easy way to implement children with their own token code.
  *
  * Compiler used: solc, optimistic-solc
- * Runtime target: EVM or OVM
+ * Runtime target: EVM or BVM
  */
-abstract contract Abs_L2DepositedERC721 is iOVM_L2DepositedERC721, CrossDomainEnabled {
+abstract contract Abs_L2DepositedERC721 is iBVM_L2DepositedERC721, CrossDomainEnabled {
 
     /*******************
      * Contract Events *
      *******************/
 
-    event Initialized(iOVM_L1ERC721Gateway tokenGateway);
+    event Initialized(iBVM_L1ERC721Gateway tokenGateway);
 
     /********************************
      * External Contract References *
      ********************************/
 
-    iOVM_L1ERC721Gateway public tokenGateway;
+    iBVM_L1ERC721Gateway public tokenGateway;
 
     /********************************
      * Constructor & Initialization *
@@ -57,7 +57,7 @@ abstract contract Abs_L2DepositedERC721 is iOVM_L2DepositedERC721, CrossDomainEn
      */
 
     function init(
-        iOVM_L1ERC721Gateway _tokenGateway
+        iBVM_L1ERC721Gateway _tokenGateway
     )
         public
     {
@@ -187,7 +187,7 @@ abstract contract Abs_L2DepositedERC721 is iOVM_L2DepositedERC721, CrossDomainEn
     {
         // Construct calldata for ERC721Gateway.finalizeWithdrawal(_to, _tokenId)
         bytes memory data = abi.encodeWithSelector(
-            iOVM_L1ERC721Gateway.finalizeWithdrawal.selector,
+            iBVM_L1ERC721Gateway.finalizeWithdrawal.selector,
             _to,
             _tokenId
         );
@@ -198,7 +198,7 @@ abstract contract Abs_L2DepositedERC721 is iOVM_L2DepositedERC721, CrossDomainEn
             getFinalizeWithdrawalGas(),
             data
         );
-        
+
         // Call our withdrawal accounting handler implemented by child contracts (usually a _burn)
         _handleInitiateWithdrawal(_to, _tokenId);
 
@@ -212,7 +212,7 @@ abstract contract Abs_L2DepositedERC721 is iOVM_L2DepositedERC721, CrossDomainEn
     /**
      * @dev Complete a deposit, and credits funds to the recipient's balance of the
      * specified ERC721
-     * This call will fail if it did not originate from a corresponding deposit in OVM_ERC721Gateway.
+     * This call will fail if it did not originate from a corresponding deposit in BVM_ERC721Gateway.
      *
      * @param _to Address to receive the withdrawal at
      * @param _tokenId ERC721 to deposit

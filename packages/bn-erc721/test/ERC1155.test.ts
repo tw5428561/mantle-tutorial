@@ -13,7 +13,7 @@ describe("ERC1155 contract", () =>{
       }
 
     describe("Deployment", () => {
-        
+
         it("Should set the right owner", async () => {
             const { erc1155, owner } = await loadFixture(deployTokenFixture);
             expect(await erc1155.owner()).to.equal(owner.address);
@@ -33,37 +33,5 @@ describe("ERC1155 contract", () =>{
             const svg = await erc1155.uri(2)
             console.log("svg:", svg)
           });
-      
     })
 })
-
-// event:
-// Approval
-// ApprovalForAll
-// OwnershipTransferred
-// Transfer
-
-// function:
-// approve
-// burn
-// renounceOwnership
-// safeMint
-// safeTransferFrom
-// safeTransferFrom
-// setApprovalForAll
-// transferFrom
-// transferOwnership
-
-
-// balanceOf
-// getApproved
-// isApprovedForAll
-// name  --
-// owner --
-// ownerOf
-// supportsInterface
-// symbol --
-// tokenByIndex
-// tokenOfOwnerByIndex
-// tokenURI
-// totalSupply --

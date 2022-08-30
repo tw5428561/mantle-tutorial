@@ -3,13 +3,13 @@ pragma solidity >0.5.0 <0.8.0;
 pragma experimental ABIEncoderV2;
 
 /* Interface Imports */
-import { iOVM_L1ERC721Gateway } from "../iOVM/iOVM_L1ERC721Gateway.sol";
+import { iBVM_L1ERC721Gateway } from "../iBVM/iBVM_L1ERC721Gateway.sol";
 import { Abs_L1ERC721Gateway } from "./Abs_L1ERC721Gateway.sol";
 import { IERC721 } from "../libraries/IERC721.sol";
 import "hardhat/console.sol";
 
 /**
-* @title OVM_ERC721Gateway
+* @title BVM_ERC721Gateway
 * @dev An ERC721 Gateway is a contract which stores deposited ERC721 tokens that
 * are in use on the other side of the bridge.
 * It synchronizes a corresponding representation of the "deposited token" on
@@ -22,9 +22,9 @@ import "hardhat/console.sol";
 * may also want to extend the abstract contract in a similar manner.
 *
 * Compiler used: solc, optimistic-solc
-* Runtime target: EVM or OVM
+* Runtime target: EVM or BVM
  */
-contract OVM_L1ERC721Gateway is Abs_L1ERC721Gateway {
+contract BVM_L1ERC721Gateway is Abs_L1ERC721Gateway {
 
     /***************
      * Constructor *
@@ -32,7 +32,7 @@ contract OVM_L1ERC721Gateway is Abs_L1ERC721Gateway {
 
     /**
      * @param _ERC721 ERC721 address this gateway stores deposits for
-     * @param _depositedERC721 iOVM_DepositedERC721-compatible address on the chain being deposited into.
+     * @param _depositedERC721 iBVM_DepositedERC721-compatible address on the chain being deposited into.
      * @param _messenger messenger address being used for cross-chain communications.
      */
     constructor(
@@ -74,7 +74,6 @@ contract OVM_L1ERC721Gateway is Abs_L1ERC721Gateway {
             address(this),
             _tokenId
         );
-        console.log("_handleInitiateDeposit......");
     }
 
     /**

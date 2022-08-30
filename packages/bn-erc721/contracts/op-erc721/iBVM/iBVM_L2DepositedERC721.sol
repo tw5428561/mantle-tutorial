@@ -3,36 +3,35 @@ pragma solidity >0.5.0;
 pragma experimental ABIEncoderV2;
 
 /**
- * @title iOVM_ERC721Gateway
+ * @title iBVM_DepositedERC721
  */
-interface iOVM_L1ERC721Gateway {
+interface iBVM_L2DepositedERC721 {
 
     /**********
      * Events *
      **********/
-
-    event DepositInitiated(
+    event WithdrawalInitiated(
         address indexed _from,
         address _to,
         uint256 _tokenId
     );
 
-    event WithdrawalFinalized(
+    event DepositFinalized(
         address indexed _to,
-        uint256 _tokenId
+        uint256 _tokenId,
+        string _tokenURI
     );
 
 
     /********************
      * Public Functions *
      ********************/
-
-    function deposit(
+    function withdraw(
         uint _tokenId
     )
         external;
 
-    function depositTo(
+    function withdrawTo(
         address _to,
         uint _tokenId
     )
@@ -43,9 +42,11 @@ interface iOVM_L1ERC721Gateway {
      * Cross-chain Functions *
      *************************/
 
-    function finalizeWithdrawal(
+    function finalizeDeposit(
         address _to,
-        uint _tokenId
+        uint _tokenId,
+        string memory _tokenURI
     )
         external;
+
 }

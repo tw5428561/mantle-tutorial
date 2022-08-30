@@ -3,7 +3,7 @@ pragma solidity >0.5.0 <0.8.0;
 pragma experimental ABIEncoderV2;
 
 /* Interface Imports */
-import { iOVM_L1ERC721Gateway } from "../iOVM/iOVM_L1ERC721Gateway.sol";
+import { iBVM_L1ERC721Gateway } from "../iBVM/iBVM_L1ERC721Gateway.sol";
 
 /* Contract Imports */
 import { ERC721URIStorage } from "../libraries/ERC721URIStorage.sol";
@@ -14,7 +14,7 @@ import { Abs_L2DepositedERC721 } from "./Abs_L2DepositedERC721.sol";
 import "hardhat/console.sol";
 
 /**
- * @title OVM_DepositedERC721
+ * @title BVM_DepositedERC721
  * @dev The Deposited ERC721 is an ERC721 implementation which represents assets deposited on the other side of an Optimistic bridge.
  * This contract mints new tokens when it hears about deposits into the corresponding gateway.
  * This contract also burns the tokens intended for withdrawal, informing the gateway to release funds.
@@ -23,9 +23,9 @@ import "hardhat/console.sol";
  * Alternative implementations can be used in this similar manner.
  *
  * Compiler used: optimistic-solc
- * Runtime target: OVM, EVM
+ * Runtime target: BVM, EVM
  */
-contract OVM_L2DepositedERC721 is Abs_L2DepositedERC721, ERC721URIStorage {
+contract BVM_L2DepositedERC721 is Abs_L2DepositedERC721, ERC721URIStorage {
 
     /***************
      * Constructor *
@@ -65,11 +65,6 @@ contract OVM_L2DepositedERC721 is Abs_L2DepositedERC721, ERC721URIStorage {
         internal
         override
     {
-        console.log("enter here now");
-        console.log(_to);
-        console.log(_tokenId);
-        console.log(_tokenURI);
-        console.log("enter here now");
         _mint(_to, _tokenId);
         _setTokenURI(_tokenId, _tokenURI);
     }
