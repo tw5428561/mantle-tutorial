@@ -24,7 +24,7 @@ async function main() {
   )
   await L1_ERC721.deployTransaction.wait()
   console.log("L1 ERC721 Contract ExampleToken Address: ", L1_ERC721.address)
-
+  
   console.log('Deploying L2 ERC721...')
   const L2_ERC721 = await factory__L2_ERC721.connect(l2Wallet).deploy(
     l2MessengerAddress,

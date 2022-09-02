@@ -1,12 +1,10 @@
 async function main() {
     console.log("l1 to l2 msg sending")
 
-    Controller = await ethers.getContractFactory("FromL1_ControlL2Greeter")
-    controller = await Controller.deploy()
-    tx = await controller.setGreeting(`Hello from L1 ${Date()}`)
-    rcpt = await tx.wait()
-
-    console.log("FromL1_ControlL2Greeter address",controller.address)
+    Greeter = await ethers.getContractFactory("Greeter")
+    greeter = await Greeter.attach("0x0B306BF915C4d645ff596e518fAf3F9669b97016")
+    await greeter.greet()
+    console.log("message==", await greeter.greet())
 }
 
 main()
@@ -15,3 +13,4 @@ main()
         console.error(error);
         process.exit(1);
     });
+

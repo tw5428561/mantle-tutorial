@@ -6,7 +6,6 @@ pragma experimental ABIEncoderV2;
 import { iBVM_L1ERC721Gateway } from "../iBVM/iBVM_L1ERC721Gateway.sol";
 import { Abs_L1ERC721Gateway } from "./Abs_L1ERC721Gateway.sol";
 import { IERC721 } from "../libraries/IERC721.sol";
-import "hardhat/console.sol";
 
 /**
 * @title BVM_ERC721Gateway

@@ -1,4 +1,7 @@
 #! /usr/local/bin/node
+
+// Transfers between L1 and L2 using the Optimism SDK
+
 const ethers = require("ethers")
 const optimismSDK = require("@bitdaoio/sdk")
 require('dotenv').config()
@@ -9,7 +12,7 @@ const l1Url = process.env.TEST_URL
 const l2Url = process.env.OPTI_TEST_URL
 
 const daiAddrs = {
-  l1Addr: "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44",
+  l1Addr: "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1",
   l2Addr: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
 }
 
@@ -20,9 +23,11 @@ let addr = daiAddrs.l1Addr
 const getSigners = async () => {
   const l1RpcProvider = new ethers.providers.JsonRpcProvider(l1Url)
   const l2RpcProvider = new ethers.providers.JsonRpcProvider(l2Url)
+
   const privateKey = "ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
   const l1Wallet = new ethers.Wallet(privateKey,l1RpcProvider);
   const l2Wallet = new ethers.Wallet(privateKey, l2RpcProvider);
+
   return [l1Wallet, l2Wallet]
 }
 
@@ -40,6 +45,7 @@ const setup = async() => {
   l2ERC20 = new ethers.Contract(daiAddrs.l2Addr, erc20ABI, l2Signer)
 }
 
+// The ABI fragment for an ERC20 we need to get a user's balance.
 const erc20ABI = [
   {
     constant: true,
@@ -49,6 +55,7 @@ const erc20ABI = [
     type: "function",
   },
 ]    // erc20ABI
+
 const gwei = 1000000000n
 const eth = gwei * gwei   // 10^18
 const centieth = eth/100n

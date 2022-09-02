@@ -13,11 +13,11 @@ module.exports = {
   solidity: "0.8.4",
   networks: {
      "local": {
-        url: 'http://localhost:9545',
+        url: 'http://127.0.0.1:9545',
         accounts: { mnemonic: process.env.MNEMONIC }
       },
       "bitnetwork": {
-        url: 'http://localhost:8545',
+        url: 'http://127.0.0.1:8545',
         accounts: { mnemonic: process.env.MNEMONIC }
       }
   }

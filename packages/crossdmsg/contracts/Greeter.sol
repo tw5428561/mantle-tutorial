@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import { ICrossDomainMessenger } from "@eth-optimism/contracts/libraries/bridge/ICrossDomainMessenger.sol";
+import { ICrossDomainMessenger } from "@bitdaoio/contracts/libraries/bridge/ICrossDomainMessenger.sol";
 
 contract Greeter {
   string greeting;

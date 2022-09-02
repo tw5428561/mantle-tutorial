@@ -5,7 +5,7 @@ async function main() {
 
     console.log('deploying l2Greeter to', hre.network.name)
 
-    const l2GreeterContract = await l2Greeter.deploy("l2 greeting!");                                      // L1 token
+    const l2GreeterContract = await l2Greeter.deploy("l2 message greeting!");                                      // L1 token
 
     console.log("L2 Greeter deployed to:", l2GreeterContract.address);
 }

@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@eth-optimism/contracts": "^0.2.4",
     "@bitdaoio/contracts": "1.0.6",
     "@nomiclabs/hardhat-ethers": "^2.0.6",
     "@nomiclabs/hardhat-etherscan": "^3.0.3",

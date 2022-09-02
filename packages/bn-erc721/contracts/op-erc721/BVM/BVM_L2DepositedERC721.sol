@@ -11,7 +11,6 @@ import { ERC721 } from "../libraries/ERC721.sol";
 
 /* Library Imports */
 import { Abs_L2DepositedERC721 } from "./Abs_L2DepositedERC721.sol";
-import "hardhat/console.sol";
 
 /**
  * @title BVM_DepositedERC721

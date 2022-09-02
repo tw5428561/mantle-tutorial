@@ -9,8 +9,8 @@
     "hardhat": "^2.8.4"
   },
   "dependencies": {
-    "@bitdaoio/contracts": "^0.5.14",
-    "@bitdaoio/sdk": "^1.0.1",
+    "@bitdaoio/contracts": "1.0.6",
+    "@bitdaoio/sdk": "1.0.6",
     "dotenv": "^16.0.0"
   }
 }

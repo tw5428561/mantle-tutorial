@@ -1,10 +1,11 @@
 async function main() {
     console.log("l1 to l2 msg sending")
-
-    Greeter = await ethers.getContractFactory("Greeter")
-    greeter = await Greeter.attach("0x7bc06c482DEAd17c0e297aFbC32f6e63d3846650")
-    await greeter.greet()
-
+    let Controller = await ethers.getContractFactory("FromL1_ControlL2Greeter")
+    let controller = await Controller.deploy()
+    console.log("FromL1_ControlL2Greeter address",controller.address)
+    let tx = await controller.setGreeting(`Message from L1 to L2`)
+    let rcpt = await tx.wait()
+    console.log(rcpt)
 }
 
 main()

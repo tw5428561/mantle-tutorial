@@ -10,7 +10,6 @@ import { IERC721Receiver } from "../libraries/IERC721Receiver.sol";
 
 /* Library Imports */
 import { CrossDomainEnabled } from "@bitdaoio/contracts/libraries/bridge/CrossDomainEnabled.sol";
-import "hardhat/console.sol";
 
 /**
  * @title Abs_ERC721Gateway
@@ -129,7 +128,6 @@ abstract contract Abs_L1ERC721Gateway is iBVM_L1ERC721Gateway, CrossDomainEnable
         public
         override
     {
-        console.log("deposit......");
         _initiateDeposit(msg.sender, msg.sender, _tokenId);
     }
 
@@ -185,7 +183,6 @@ abstract contract Abs_L1ERC721Gateway is iBVM_L1ERC721Gateway, CrossDomainEnable
     )
         internal
     {
-        console.log("_sendDepositMessage......");
         // Construct calldata for depositedERC721.finalizeDeposit(_to, _tokenId, _tokenURI)
         bytes memory data = abi.encodeWithSelector(
             iBVM_L2DepositedERC721.finalizeDeposit.selector,
@@ -262,3 +259,5 @@ abstract contract Abs_L1ERC721Gateway is iBVM_L1ERC721Gateway, CrossDomainEnable
         emit WithdrawalFinalized(_to, _tokenId);
     }
 }
+// /opt/optimism/packages/contracts-bedrock/forge-artifacts/test.sol/Test.json
+// /opt/optimism/packages/contracts-bedrock/forge-artifacts/test.sol/Test.json
