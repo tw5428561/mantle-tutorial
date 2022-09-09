@@ -1,1 +1,17 @@
-.idea
+.DS_Store
+node_modules
+coverage
+coverage.json
+
+#Hardhat files
+cache
+artifacts
+typechain
+#typechain-types
+
+
+#package
+package-lock.json
+
+yarn.lock
+yarn-error.log
