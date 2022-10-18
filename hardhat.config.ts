@@ -33,15 +33,15 @@ const config: HardhatUserConfig = {
     }]
     },
   networks: {
-    hardhat: {
-      forking: {
-        url: 'https://bitnetwork-l2geth.qa.davionlabs.com'
-      },
-      gasPrice: 1000000000,
-      chainId: 1705004,
-      gas: 4100000,
-      from:'0xD6f15EAC1Cb3B4131Ab4899a52E711e19DEeA73f'
-    },
+    // hardhat: {
+    //   forking: {
+    //     url: 'https://bitnetwork-l2geth.qa.davionlabs.com'
+    //   },
+    //   gasPrice: 1000000000,
+    //   chainId: 1705004,
+    //   gas: 4100000,
+    //   from:'0xD6f15EAC1Cb3B4131Ab4899a52E711e19DEeA73f'
+    // },
     ropsten: {
       url: process.env.ROPSTEN_URL || "",
       accounts:
