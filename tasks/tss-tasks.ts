@@ -1,9 +1,9 @@
 import {task} from 'hardhat/config'
 import {HexToBytes} from "../utils/deploy-utils";
-import {ethers} from "ethers";
+import {BigNumberish, ethers} from "ethers";
 
 /**
- *
+ * hh getTssGroupInfo --contract 0xAc2C50Af31501370366D243FaeC56F89128f6d96 --network devl1
  */
 task("getTssGroupInfo")
   .addParam('contract', "tss group contract address")
@@ -45,8 +45,8 @@ task("setSlashingParams")
   .addParam('exincome1', "slash animus extra income")
   .setAction(async (taskArgs, hre) => {
     const tssStakingSlashing = await (await hre.ethers.getContractFactory('TssStakingSlashing')).attach(taskArgs.contract)
-    let slashParams = [taskArgs.slashamount0, taskArgs.slashamount1]
-    let exIncomes = [taskArgs.exincome0, taskArgs.exincome1]
+    let slashParams : [BigNumberish,BigNumberish] = [taskArgs.slashamount0, taskArgs.slashamount1]
+    let exIncomes : [BigNumberish,BigNumberish]= [taskArgs.exincome0, taskArgs.exincome1]
     await tssStakingSlashing.setSlashingParams(slashParams, exIncomes)
   })
 
