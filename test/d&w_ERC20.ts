@@ -231,7 +231,7 @@ describe('depositERC20 and withdrawERC20', function () {
 
     it('should l1 nativeToken balance is greater than 0', async () => {
       [l1b,l2b] = await reportBalances()
-      console.log(l1b,l2b)
+      // console.log("\tl1 nativeToken balance: "l1b,l2b)
 
       l1b.should.be.at.least(0)
       // l2b.should.be.at.least(0)
@@ -245,8 +245,8 @@ describe('depositERC20 and withdrawERC20', function () {
       const l2b = await l2Signer.getBalance()
       // const l2bc = await L2_BIT_TOKEN.balanceOf(l2Signer.address)
 
-      console.log("l1 balance: ", l1b)
-      console.log("l2 balance: ", l2b)
+      console.log("\tl1 balance: ", l1b)
+      console.log("\tl2 balance: ", l2b)
       // console.log("l2 balance: ", l2bc)
     })
 
@@ -257,7 +257,7 @@ describe('depositERC20 and withdrawERC20', function () {
         process.env.L1_Standard_Bridge!,
         "5000000000000000000"
       )
-      console.log("txhash: ", tx.hash)
+      console.log("\tapprove txhash: ", tx.hash)
     })
 
     //allowance
@@ -269,7 +269,7 @@ describe('depositERC20 and withdrawERC20', function () {
       )
       execSync('sleep 20');
 
-      console.log("allowance: ", allowance)
+      console.log("\tallowance: ", allowance)
     })
 
     it('should trigger the deposit ERC20 function with the given amount', async () => {
@@ -281,11 +281,11 @@ describe('depositERC20 and withdrawERC20', function () {
         3000000,
         '0x' + '22'.repeat(32)
       )
-      console.log("txhash: ", tx.hash)
+      console.log("\tdepositERC20 txhash: ", tx.hash)
       // console.log("txdata: ", tx.data)
       let rcpt = await tx.wait()
-      console.log("rcpt status: ", rcpt.status)
-      console.log("rcpt to: ", rcpt.to)
+      console.log("\trcpt status: ", rcpt.status)
+      console.log("\trcpt to: ", rcpt.to)
 
       execSync('sleep 10');
     })
@@ -296,7 +296,7 @@ describe('depositERC20 and withdrawERC20', function () {
         l1Signer.address,
         process.env.L1_Standard_Bridge!
       )
-      console.log("allowance: ", allowance)
+      console.log("\tallowance: ", allowance)
     })
 
     // finalizeDeposit
@@ -321,8 +321,8 @@ describe('depositERC20 and withdrawERC20', function () {
       const l1b = await L1_BIT_TOKEN.balanceOf(l1Signer.address)
       const l2b = await l2Signer.getBalance()
 
-      console.log("l1 balance: ", l1b)
-      console.log("l2 balance: ", l2b)
+      console.log("\tl1 balance: ", l1b)
+      console.log("\tl2 balance: ", l2b)
     })
   })
 
@@ -333,8 +333,8 @@ describe('depositERC20 and withdrawERC20', function () {
       const l1b = await L1_BIT_TOKEN.balanceOf(l1Signer.address)
       const l2b = await l2Signer.getBalance()
 
-      console.log("l1 balance: ", l1b)
-      console.log("l2 balance: ", l2b)
+      console.log("\tl1 balance: ", l1b)
+      console.log("\tl2 balance: ", l2b)
     })
     
     it('should trigger the withdraw ETH function with the given amount', async () => {
