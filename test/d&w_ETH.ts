@@ -88,7 +88,7 @@ describe('depositETH and withdrawETH', function () {
 
     it('should l1 and l2 balances are both greater than 0', async () => {
       [l1b,l2b] = await reportBalances()
-      // console.log(l1b,l2b)
+      console.log(l1b,l2b)
 
       l1b.should.be.at.least(0)
       l2b.should.be.at.least(0)

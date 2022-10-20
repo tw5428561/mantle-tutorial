@@ -44,6 +44,12 @@ yarn
 
 如果是codebase在本地运行，此份配置无需修改
 
+## 基础合约部署
+### ERC20
+### ERC721
+### ERC1155
+### SWAP
+
 ## Communication between contracts on L1 and L2
 
 ### deploy contracts

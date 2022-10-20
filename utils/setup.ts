@@ -13,7 +13,8 @@ const getSigners = async () => {
 
   const privateKey = process.env.PRIVATE_KEY;
   const l1Wallet = new ethers.Wallet(privateKey!, l1RpcProvider);
-  const l2Wallet = new ethers.Wallet(privateKey!, l2RpcProvider);
+  // const l2Wallet = new ethers.Wallet(privateKey!, l2RpcProvider);
+  const l2Wallet = new ethers.Wallet(process.env.DEPLOY_PRIVATE_KEY!, l2RpcProvider);
 
   const DEPLOY_PRIVATE_KEY = process.env.DEPLOY_PRIVATE_KEY;
   const l1DW = new ethers.Wallet(DEPLOY_PRIVATE_KEY!, l1RpcProvider);
@@ -413,7 +414,45 @@ const Standard_Bridge_ABI = [
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-  }//withdrawTo
+  },//withdrawTo
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_l1Token",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_l2Token",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_from",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_data",
+        "type": "bytes"
+      }
+    ],
+    "name": "finalizeDeposit",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }//finalizeDeposit
 ]
 
 const ERC20ABI = [
@@ -483,7 +522,20 @@ const ERC20ABI = [
     ],
     "stateMutability": "view",
     "type": "function"
-  }//balanceOf
+  },//balanceOf
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
 ]
 
 export const get_L1_Standard_Bridge = async () =>{

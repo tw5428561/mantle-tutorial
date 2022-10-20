@@ -109,9 +109,25 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ITssRewardContract__factory>;
     getContractFactory(
+      name: "ERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20__factory>;
+    getContractFactory(
+      name: "IERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20__factory>;
+    getContractFactory(
+      name: "IERC20Metadata",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Metadata__factory>;
+    getContractFactory(
       name: "L1CustomERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.L1CustomERC20__factory>;
+    getContractFactory(
+      name: "OptimismUselessToken",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.OptimismUselessToken__factory>;
     getContractFactory(
       name: "FromL1_ControlL2Greeter",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -326,10 +342,30 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.ITssRewardContract>;
     getContractAt(
+      name: "ERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20>;
+    getContractAt(
+      name: "IERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20>;
+    getContractAt(
+      name: "IERC20Metadata",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Metadata>;
+    getContractAt(
       name: "L1CustomERC20",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.L1CustomERC20>;
+    getContractAt(
+      name: "OptimismUselessToken",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.OptimismUselessToken>;
     getContractAt(
       name: "FromL1_ControlL2Greeter",
       address: string,

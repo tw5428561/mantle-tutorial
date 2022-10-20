@@ -23,6 +23,7 @@ let l1sb: any
 let l2sb: any
 let l1b: BigNumber
 let l2b: BigNumber
+let tx: TransactionResponse
 
 const reportBalances = async () => {
   let l1tb = await crossChainMessenger.l1Signer.getBalance()
@@ -52,6 +53,8 @@ describe('depositERC20 and withdrawERC20', function () {
         l1SignerOrProvider: l1Signer,
         l2SignerOrProvider: l2Signer
     })
+
+
   });
 
   // describe('depositETH 断言emit', () => {
@@ -226,8 +229,17 @@ describe('depositERC20 and withdrawERC20', function () {
 
   describe('depositERC20 通过 l1 sb 合约', () => {
 
+    it('should l1 nativeToken balance is greater than 0', async () => {
+      [l1b,l2b] = await reportBalances()
+      console.log(l1b,l2b)
+
+      l1b.should.be.at.least(0)
+      // l2b.should.be.at.least(0)
+    })
+
     it('should get balance before', async () => {
-      // console.log('===>', await crossChainMessenger.getMessageStatus(response.hash))
+      // let mintTx = await L1_BIT_TOKEN.mint('1000000000000000000000')
+      // console.log('\tmint tx hash: ', mintTx.hash)
 
       const l1b = await L1_BIT_TOKEN.balanceOf(l1Signer.address)
       const l2b = await l2Signer.getBalance()
@@ -241,28 +253,28 @@ describe('depositERC20 and withdrawERC20', function () {
     //approve
     it('shoule approve ERC20', async () => {
 
-    let tx = await L1_BIT_TOKEN.approve(
-      process.env.L1_Standard_Bridge!,
-      "5000000000000000000"
-    )
-    console.log("txhash: ", tx.hash)
-
+      tx = await L1_BIT_TOKEN.approve(
+        process.env.L1_Standard_Bridge!,
+        "5000000000000000000"
+      )
+      console.log("txhash: ", tx.hash)
     })
 
     //allowance
-
     it('should get bit allowance before', async ()=>{
 
       let allowance = await L1_BIT_TOKEN.allowance(
         l1Signer.address,
         process.env.L1_Standard_Bridge!
       )
+      execSync('sleep 20');
+
       console.log("allowance: ", allowance)
     })
 
     it('should trigger the deposit ERC20 function with the given amount', async () => {
 
-      let tx = await L1_Standard_Bridge.depositERC20(
+      tx = await L1_Standard_Bridge.depositERC20(
         process.env.L1_Bit_Token!,
         process.env.L2_Bit_Token!,
         "5000000000000000000",
@@ -270,6 +282,7 @@ describe('depositERC20 and withdrawERC20', function () {
         '0x' + '22'.repeat(32)
       )
       console.log("txhash: ", tx.hash)
+      // console.log("txdata: ", tx.data)
       let rcpt = await tx.wait()
       console.log("rcpt status: ", rcpt.status)
       console.log("rcpt to: ", rcpt.to)
@@ -285,6 +298,23 @@ describe('depositERC20 and withdrawERC20', function () {
       )
       console.log("allowance: ", allowance)
     })
+
+    // finalizeDeposit
+    // it('should finalizeDeposit', async ()=>{
+
+    //   console.log("tx.data: ",tx.data)
+
+    //   await L2_Standard_Bridge.finalizeDeposit(
+    //     process.env.L1_Bit_Token!,
+    //     process.env.L2_Bit_Token!,
+    //     l1Signer.address,
+    //     l2Signer.address,
+    //     "5000000000000000000",
+    //     tx.data
+    //   )
+    //   execSync('sleep 10');
+
+    // })
 
     it('should get balance after', async () => {
 
