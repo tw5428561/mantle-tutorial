@@ -29,6 +29,22 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.L2StandardERC20__factory>;
     getContractFactory(
+      name: "OwnableUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.OwnableUpgradeable__factory>;
+    getContractFactory(
+      name: "Initializable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Initializable__factory>;
+    getContractFactory(
+      name: "ReentrancyGuardUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ReentrancyGuardUpgradeable__factory>;
+    getContractFactory(
+      name: "ContextUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ContextUpgradeable__factory>;
+    getContractFactory(
       name: "Ownable",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Ownable__factory>;
@@ -109,25 +125,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ITssRewardContract__factory>;
     getContractFactory(
-      name: "ERC20",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC20__factory>;
-    getContractFactory(
-      name: "IERC20",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC20__factory>;
-    getContractFactory(
-      name: "IERC20Metadata",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC20Metadata__factory>;
-    getContractFactory(
       name: "L1CustomERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.L1CustomERC20__factory>;
-    getContractFactory(
-      name: "OptimismUselessToken",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.OptimismUselessToken__factory>;
     getContractFactory(
       name: "FromL1_ControlL2Greeter",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -217,6 +217,22 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.TestERC721__factory>;
     getContractFactory(
+      name: "ITssGroupManager",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ITssGroupManager__factory>;
+    getContractFactory(
+      name: "IStakingSlashing",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IStakingSlashing__factory>;
+    getContractFactory(
+      name: "TssGroupManager",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TssGroupManager__factory>;
+    getContractFactory(
+      name: "TssStakingSlashing",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TssStakingSlashing__factory>;
+    getContractFactory(
       name: "TssRewardContract",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.TssRewardContract__factory>;
@@ -241,6 +257,26 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.L2StandardERC20>;
+    getContractAt(
+      name: "OwnableUpgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.OwnableUpgradeable>;
+    getContractAt(
+      name: "Initializable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Initializable>;
+    getContractAt(
+      name: "ReentrancyGuardUpgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ReentrancyGuardUpgradeable>;
+    getContractAt(
+      name: "ContextUpgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ContextUpgradeable>;
     getContractAt(
       name: "Ownable",
       address: string,
@@ -342,30 +378,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.ITssRewardContract>;
     getContractAt(
-      name: "ERC20",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ERC20>;
-    getContractAt(
-      name: "IERC20",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IERC20>;
-    getContractAt(
-      name: "IERC20Metadata",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IERC20Metadata>;
-    getContractAt(
       name: "L1CustomERC20",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.L1CustomERC20>;
-    getContractAt(
-      name: "OptimismUselessToken",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.OptimismUselessToken>;
     getContractAt(
       name: "FromL1_ControlL2Greeter",
       address: string,
@@ -476,6 +492,26 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.TestERC721>;
+    getContractAt(
+      name: "ITssGroupManager",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ITssGroupManager>;
+    getContractAt(
+      name: "IStakingSlashing",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IStakingSlashing>;
+    getContractAt(
+      name: "TssGroupManager",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TssGroupManager>;
+    getContractAt(
+      name: "TssStakingSlashing",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TssStakingSlashing>;
     getContractAt(
       name: "TssRewardContract",
       address: string,

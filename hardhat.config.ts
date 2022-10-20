@@ -18,6 +18,7 @@ import "./tasks/ERC1155.task"
 import "./tasks/op_erc721.task"
 import "./tasks/cross-messages.task"
 import "./tasks/TssReward-verification"
+import "./tasks/tss-tasks"
 
 
 import { HardhatUserConfig } from "hardhat/config";
@@ -104,6 +105,13 @@ const config: HardhatUserConfig = {
       chainId: 31337,
       gas: 10000000,
       gasPrice: 5000000,
+    },
+    devl1: {
+      chainId: 31337,
+      url: 'https://mantle-l1chain.dev.davionlabs.com',
+      accounts: [
+        '',
+      ],
     },
   },
 

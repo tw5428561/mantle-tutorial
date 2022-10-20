@@ -7,6 +7,7 @@ coverage.json
 cache
 artifacts
 typechain
+hardhat.config.ts
 #typechain-types
 
 
@@ -15,3 +16,5 @@ package-lock.json
 
 yarn.lock
 yarn-error.log
+
+.env
